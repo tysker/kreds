@@ -1,4 +1,4 @@
-package dk.nordics.kreds.app;
+package dk.nordics.kreds;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
