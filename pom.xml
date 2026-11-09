@@ -34,11 +34,11 @@
     </properties>
 
     <!-- Project Modules -->
-<!--    <modules>-->
+    <modules>
 <!--        <module>kreds-core</module>-->
-<!--        <module>kreds-api</module>-->
-<!--        <module>kreds-app</module>-->
-<!--    </modules>-->
+        <module>kreds-api</module>
+        <module>kreds-app</module>
+    </modules>
 
     <!-- Project Dependencies -->
     <dependencyManagement>
