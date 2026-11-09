@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.2</version>
+        <relativePath/>
+    </parent>
+
+    <!-- Module Information -->
+    <groupId>dk.nordics</groupId>
+    <artifactId>kreds</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- Project Information   -->
+    <name>Kreds</name>
+    <description>A calm, private, end-to-end encrypted social app for family and friends. Made in the Nordics.</description>
+
+    <!-- Project Developer/s -->
+    <developers>
+        <developer>
+            <name>Jörg O.</name>
+            <email>tysker@example.com</email>
+        </developer>
+    </developers>
+
+    <!-- Project Properties -->
+    <properties>
+        <java.version>25</java.version>
+    </properties>
+
+    <!-- Project Modules -->
+<!--    <modules>-->
+<!--        <module>kreds-core</module>-->
+<!--        <module>kreds-api</module>-->
+<!--        <module>kreds-app</module>-->
+<!--    </modules>-->
+
+    <!-- Project Dependencies -->
+    <dependencyManagement>
+
+        <dependencies>
+            <dependency>
+                <groupId>dk.nordics</groupId>
+                <artifactId>kreds-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dk.nordics</groupId>
+                <artifactId>kreds-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+    <!-- Project Plugins -->
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>
