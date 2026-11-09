@@ -21,14 +21,14 @@ It is meant as a Nordic alternative to Instagram, Facebook, Snapchat and WhatsAp
 
 ## 2. Principles
 
-| Principle | What it means |
-|---|---|
-| **Private by design** | Content is **end-to-end encrypted**. Only the members of a kreds can read what is shared in it. |
-| **Calm by design** | Chronological feed, no streaks, no endless scroll tricks, few and bundled notifications, a button for peace (*hygge*). |
-| **No AI** | No AI reads your photos or messages. A deliberate choice against the tide. |
-| **Made in the Nordics** | Nordic design, Nordic words, data stored in the Nordics. Europe is acceptable, nothing outside Europe. |
-| **Built to grow** | Everything belongs to a kreds. Never assume "there is only one family". |
-| **Listen to the users** | In-app feedback from day one. |
+| Principle               | What it means                                                                                                          |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------|
+| **Private by design**   | Content is **end-to-end encrypted**. Only the members of a kreds can read what is shared in it.                        |
+| **Calm by design**      | Chronological feed, no streaks, no endless scroll tricks, few and bundled notifications, a button for peace (*hygge*). |
+| **No AI**               | No AI reads your photos or messages. A deliberate choice against the tide.                                             |
+| **Made in the Nordics** | Nordic design, Nordic words, data stored in the Nordics. Europe is acceptable, nothing outside Europe.                 |
+| **Built to grow**       | Everything belongs to a kreds. Never assume "there is only one family".                                                |
+| **Listen to the users** | In-app feedback from day one.                                                                                          |
 
 ---
 
@@ -37,29 +37,29 @@ It is meant as a Nordic alternative to Instagram, Facebook, Snapchat and WhatsAp
 The app is in **English**, with Nordic words for its core concepts. The first time a user sees a word,
 a short explanation is shown, e.g. *"glimt – Danish for glimpse"*.
 
-| In the app | Word | Language | Meaning |
-|---|---|---|---|
-| App / a group | **Kreds** / *kredse* | Danish | circle |
-| Home feed | **Stuen** | Danish | the living room |
-| A post | **glimt** | Danish | a glimpse |
-| A 1:1 chat | **snak** | Danish | a chat, a talk |
-| A group chat | **prat** | Swedish / Norwegian | a chat, a talk |
-| A comment | **svar** | Danish | a reply |
-| The like | **koselig** | Norwegian | cosy |
-| Event album | **hetki** | Finnish | a moment |
-| Trip album (on the map) | **tur** | Norwegian | a trip, an outing |
-| "On this day" | **minder** | Danish | memories |
-| Notifications | **nyt** | Danish | news, something new |
-| Search | **find** | Danish / English | find |
-| Do not disturb | **hygge** | Danish | cosiness, peace |
-| Plan a get-together | **fika** | Swedish | coffee and cake together |
-| Thank the host / the photographer | **tak** | Danish | thanks ("tak for i dag" – thanks for today) |
-| Notification setting | **lagom** | Swedish | just the right amount |
-| A quick wave | **moi** | Finnish | hi! |
-| Weekly summary (Sunday) | **ting** | Old Norse / Nordic | the assembly – and in Danish also "things" ("Ugens ting") |
-| Month / year in review | **saga** | Old Norse / Nordic | a story ("Your saga 2026") |
-| Invitation link | **bifrost** | Norse mythology | the rainbow bridge between the worlds |
-| Family tree (later) | **Yggdrasil** | Norse mythology | the world tree |
+| In the app                        | Word                 | Language            | Meaning                                                   |
+|-----------------------------------|----------------------|---------------------|-----------------------------------------------------------|
+| App / a group                     | **Kreds** / *kredse* | Danish              | circle                                                    |
+| Home feed                         | **Stuen**            | Danish              | the living room                                           |
+| A post                            | **glimt**            | Danish              | a glimpse                                                 |
+| A 1:1 chat                        | **snak**             | Danish              | a chat, a talk                                            |
+| A group chat                      | **prat**             | Swedish / Norwegian | a chat, a talk                                            |
+| A comment                         | **svar**             | Danish              | a reply                                                   |
+| The like                          | **koselig**          | Norwegian           | cosy                                                      |
+| Event album                       | **hetki**            | Finnish             | a moment                                                  |
+| Trip album (on the map)           | **tur**              | Norwegian           | a trip, an outing                                         |
+| "On this day"                     | **minder**           | Danish              | memories                                                  |
+| Notifications                     | **nyt**              | Danish              | news, something new                                       |
+| Search                            | **find**             | Danish / English    | find                                                      |
+| Do not disturb                    | **hygge**            | Danish              | cosiness, peace                                           |
+| Plan a get-together               | **fika**             | Swedish             | coffee and cake together                                  |
+| Thank the host / the photographer | **tak**              | Danish              | thanks ("tak for i dag" – thanks for today)               |
+| Notification setting              | **lagom**            | Swedish             | just the right amount                                     |
+| A quick wave                      | **moi**              | Finnish             | hi!                                                       |
+| Weekly summary (Sunday)           | **ting**             | Old Norse / Nordic  | the assembly – and in Danish also "things" ("Ugens ting") |
+| Month / year in review            | **saga**             | Old Norse / Nordic  | a story ("Your saga 2026")                                |
+| Invitation link                   | **bifrost**          | Norse mythology     | the rainbow bridge between the worlds                     |
+| Family tree (later)               | **Yggdrasil**        | Norse mythology     | the world tree                                            |
 
 **Rule:** the code uses **English names only** (`Circle`, `Post`, `Comment`, `Album`, `Reaction`, `Chat`).
 The Nordic words exist **only as UI labels**. That keeps them easy to change and makes more languages possible later.
@@ -147,17 +147,19 @@ packages it cannot open.
 
 **No short PIN:** without special security hardware on the server, a PIN could simply be guessed by whoever
 holds the encrypted backup – including the server operator.
+
 - **Honest caveat:** in a web app, the server delivers the code that encrypts. Native apps reduce that risk later.
 
 ### Data classification
 
-**Rule: when in doubt, encrypt.** Data the server has seen cannot be "unseen". Every server-visible field needs a reason.
+**Rule: when in doubt, encrypt.** Data the server has seen cannot be "unseen". Every server-visible field needs a
+reason.
 
-| Level | What | Why |
-|---|---|---|
-| **End-to-end encrypted** | Text of *glimt*, *svar*, *snak*, *prat*; photos and videos; *fika* details; names of *kredse*, *hetki* and *tur*; locations | The actual private life |
+| Level                                                                | What                                                                                                                                                                   | Why                                                                               |
+|----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| **End-to-end encrypted**                                             | Text of *glimt*, *svar*, *snak*, *prat*; photos and videos; *fika* details; names of *kredse*, *hetki* and *tur*; locations                                            | The actual private life                                                           |
 | **Server-visible, protected** (encrypted at rest, access-controlled) | Email, display name, kreds membership, IDs, timestamps, file sizes, reactions (*koselig*: who and how many), *lagom*/*hygge* settings, public keys, devices, audit log | Needed for invites, delivery, notifications, *ting*, *minder*, *saga*, statistics |
-| **Not personal** | OpenStreetMap places, word explanations, app texts | Public anyway |
+| **Not personal**                                                     | OpenStreetMap places, word explanations, app texts                                                                                                                     | Public anyway                                                                     |
 
 **In the code:** every entity has its **metadata columns** plus **one encrypted blob** (`ciphertext`) for all content.
 A test proves that no content fields exist in the database schema or the OpenSearch mappings.
@@ -169,7 +171,8 @@ The app tells users openly what the server knows (metadata) and what it cannot s
 1. **Invite-only.** No public sign-up.
 2. **Every request checks membership** – even for encrypted data.
 3. **Private storage.** Buckets are never public; files are served through short-lived signed links.
-4. **Location data is optional** – removed from photos and videos on the device, unless the user wants it (e.g. for a *tur*).
+4. **Location data is optional** – removed from photos and videos on the device, unless the user wants it (e.g. for a
+   *tur*).
 5. **Minimal push notifications.** Push travels through the browser makers' services (Google, Apple, Mozilla) –
    unavoidable on phones. The payload is encrypted and only says something like *"You have nyt"*.
 6. **Security audit log** of logins, invites, failed access attempts – users can see their own login history.
@@ -181,17 +184,17 @@ The app tells users openly what the server knows (metadata) and what it cannot s
 **Rule: Nordic first. Europe is acceptable. Nothing outside Europe.**
 This applies to every service, including the ones that sneak in unnoticed.
 
-| What | Choice |
-|---|---|
-| Servers | A Nordic provider (planned: **UpCloud**, Helsinki) |
-| Object storage – development | **MEGA S4**, European endpoint (Amsterdam or Luxembourg), **test data only** (MEGA is a non-European company) |
-| Object storage – before real users | **UpCloud** Managed Object Storage, Helsinki |
-| Object storage – local | **MinIO** in Docker |
-| Fonts | Self-hosted, no font CDN |
-| Maps | OpenStreetMap-based tiles from a European provider |
-| Email (invites) | A European email provider |
-| Analytics | None, or self-hosted |
-| Push notifications | Browser push services (exception, see above) |
+| What                               | Choice                                                                                                        |
+|------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| Servers                            | A Nordic provider (planned: **UpCloud**, Helsinki)                                                            |
+| Object storage – development       | **MEGA S4**, European endpoint (Amsterdam or Luxembourg), **test data only** (MEGA is a non-European company) |
+| Object storage – before real users | **UpCloud** Managed Object Storage, Helsinki                                                                  |
+| Object storage – local             | **MinIO** in Docker                                                                                           |
+| Fonts                              | Self-hosted, no font CDN                                                                                      |
+| Maps                               | OpenStreetMap-based tiles from a European provider                                                            |
+| Email (invites)                    | A European email provider                                                                                     |
+| Analytics                          | None, or self-hosted                                                                                          |
+| Push notifications                 | Browser push services (exception, see above)                                                                  |
 
 The code only talks the **S3 API**, so switching storage providers is configuration, not code.
 
@@ -213,29 +216,29 @@ The code only talks the **S3 API**, so switching storage providers is configurat
 
 ## 8. Tech stack
 
-| Part | Choice |
-|---|---|
-| Backend | Java 21, Spring Boot 4, Maven multi-module, Lombok |
-| Database | Postgres + Flyway |
-| Search & analytics | OpenSearch 3.x, via REST + JSON (own DTOs, no high-level client) |
-| Login | Keycloak (invite-only, *kredse* as groups) |
-| Events | RabbitMQ |
-| Files | S3 API (MinIO locally) |
-| Real-time | WebSockets |
-| Encryption | MLS library (verified in the spike; fallback: Signal Protocol) |
-| Frontend | React + Vite + TypeScript, as a PWA |
-| Tests | JUnit 5, Mockito, `@DataJpaTest`, Testcontainers – see `TESTING-NOTES.md` |
+| Part               | Choice                                                                    |
+|--------------------|---------------------------------------------------------------------------|
+| Backend            | Java 25, Spring Boot 4, Maven multi-module, Lombok                        |
+| Database           | Postgres + Flyway                                                         |
+| Search & analytics | OpenSearch 3.x, via REST + JSON (own DTOs, no high-level client)          |
+| Login              | Keycloak (invite-only, *kredse* as groups)                                |
+| Events             | RabbitMQ                                                                  |
+| Files              | S3 API (MinIO locally)                                                    |
+| Real-time          | WebSockets                                                                |
+| Encryption         | MLS library (verified in the spike; fallback: Signal Protocol)            |
+| Frontend           | React + Vite + TypeScript, as a PWA                                       |
+| Tests              | JUnit 5, Mockito, `@DataJpaTest`, Testcontainers – see `TESTING-NOTES.md` |
 
 ### Modules
 
-| Module | Responsibility | Comes from |
-|---|---|---|
-| `kreds-app` | Main class, configuration | `notifyhub-app` |
-| `kreds-api` | REST + WebSocket endpoints | new |
-| `kreds-core` | Circles, posts, members, keys, rules | new |
+| Module         | Responsibility                                              | Comes from         |
+|----------------|-------------------------------------------------------------|--------------------|
+| `kreds-app`    | Main class, configuration                                   | `notifyhub-app`    |
+| `kreds-api`    | REST + WebSocket endpoints                                  | new                |
+| `kreds-core`   | Circles, posts, members, keys, rules                        | new                |
 | `kreds-search` | OpenSearch: mappings, index setup, logs, places, statistics | `notifyhub-search` |
-| `kreds-notify` | Notifications (push, email) | `notifyhub-core` |
-| `kreds-web` | React PWA, incl. encryption and on-device search | new |
+| `kreds-notify` | Notifications (push, email)                                 | `notifyhub-core`   |
+| `kreds-web`    | React PWA, incl. encryption and on-device search            | new                |
 
 ---
 
@@ -243,24 +246,27 @@ The code only talks the **S3 API**, so switching storage providers is configurat
 
 OpenSearch **never** holds private content. It has three jobs:
 
-| Job | OpenSearch topics |
-|---|---|
-| **Logs, metrics and security audit** | Time-based indices, rollover + ISM, index templates, aliases, dashboards, alerts, raw data in object storage |
+| Job                                                                         | OpenSearch topics                                                                                             |
+|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| **Logs, metrics and security audit**                                        | Time-based indices, rollover + ISM, index templates, aliases, dashboards, alerts, raw data in object storage  |
 | **Places search** for *fika* and *tur* (OpenStreetMap data for the Nordics) | Search-as-you-type, `geo_point`, geo distance, analyzers for Nordic spelling (*Århus* = *Aarhus*, *ø* = *oe*) |
-| **Statistics on metadata** (year in review, Sunday summary counts) | Aggregations and sub-aggregations, date histograms |
+| **Statistics on metadata** (year in review, Sunday summary counts)          | Aggregations and sub-aggregations, date histograms                                                            |
 
-**Memory:** a family-sized Kreds runs fine with a small heap (512 MB–1 GB). Rule of thumb: at most half of the server's RAM as heap.
+**Memory:** a family-sized Kreds runs fine with a small heap (512 MB–1 GB). Rule of thumb: at most half of the server's
+RAM as heap.
 
 ---
 
 ## 10. Going public later
 
 **Prepared from the start:**
+
 - Everything belongs to a kreds, and every request is checked against membership.
 - Sign-up through Keycloak – open registration later is mostly configuration.
 - English code, Nordic words only as UI labels.
 
 **Needed before going public:**
+
 - Storage quotas per user, rate limiting, scaling.
 - **Legal:** privacy policy, data export and deletion, agreements with every service used,
   handling reports of illegal content. Needs proper legal advice.
@@ -273,6 +279,7 @@ The repository is **public for now, without a licence** – that means *all righ
 nobody may use the code. It may become private later.
 
 **Direction: open source with copyleft (e.g. AGPL-3.0)** before going public:
+
 - **Trust:** for an end-to-end encrypted app, anyone can check that the encryption does what we promise.
 - **Protection:** whoever runs a modified version as a service must publish their changes – big companies
   cannot simply take Kreds and keep their improvements closed.

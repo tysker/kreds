@@ -6,21 +6,21 @@ Everything a new chat needs besides `VISION.md`: where we are, how we work, and 
 
 ## 1. Where we are
 
-| | |
-|---|---|
-| Repository | https://github.com/tysker/kreds (public for now, will become private) |
-| Licence | None yet (all rights reserved). Direction: AGPL-3.0 before going public |
-| Current phase | **Phase 0 – Setup**, Step 1 (repository files) |
+|               |                                                                         |
+|---------------|-------------------------------------------------------------------------|
+| Repository    | https://github.com/tysker/kreds (public for now, will become private)   |
+| Licence       | None yet (all rights reserved). Direction: AGPL-3.0 before going public |
+| Current phase | **Phase 0 – Setup**, Step 1 (repository files)                          |
 
 ### Phases
 
-| Phase | What |
-|---|---|
-| **0** | Repository, Maven multi-module skeleton, Docker Compose (Postgres, OpenSearch + Dashboards, MinIO) |
+| Phase | What                                                                                                                                                                                                 |
+|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **0** | Repository, Maven multi-module skeleton, Docker Compose (Postgres, OpenSearch + Dashboards, MinIO)                                                                                                   |
 | **1** | **Encryption spike:** two browsers, one encrypted 1:1 *snak*, with an MLS library. Criteria: works in the browser, maintained, licence fits copyleft, understandable docs. Fallback: Signal Protocol |
-| **2** | Keycloak: invite-only login (*bifrost* links), *kredse* |
-| **3** | *Glimt*: encrypted text + photo, *Stuen* |
-| later | See "Features → Later" in `VISION.md`; OpenSearch jobs (logs/audit, places, metadata statistics); Kubernetes |
+| **2** | Keycloak: invite-only login (*bifrost* links), *kredse*                                                                                                                                              |
+| **3** | *Glimt*: encrypted text + photo, *Stuen*                                                                                                                                                             |
+| later | See "Features → Later" in `VISION.md`; OpenSearch jobs (logs/audit, places, metadata statistics); Kubernetes                                                                                         |
 
 ---
 
@@ -53,15 +53,15 @@ Every step / phase follows this checklist. It also lives in the repo as the pull
 <type>(<scope>): <what, in the imperative, lower case>
 ```
 
-| Type | For |
-|---|---|
-| `feat` | A new feature |
-| `fix` | A bug fix |
-| `test` | Adding or changing tests |
-| `docs` | Documentation only |
-| `refactor` | Code change without new behaviour |
-| `chore` | Build, dependencies, config, tooling |
-| `spike` | Throw-away experiments (Phase 1) |
+| Type       | For                                  |
+|------------|--------------------------------------|
+| `feat`     | A new feature                        |
+| `fix`      | A bug fix                            |
+| `test`     | Adding or changing tests             |
+| `docs`     | Documentation only                   |
+| `refactor` | Code change without new behaviour    |
+| `chore`    | Build, dependencies, config, tooling |
+| `spike`    | Throw-away experiments (Phase 1)     |
 
 Examples: `feat(core): add Circle entity and repository` · `test(search): add security filter tests` ·
 `docs: add ADR for end-to-end encryption` · `chore: add docker compose for postgres and opensearch`
@@ -70,10 +70,10 @@ Examples: `feat(core): add Circle entity and repository` · `test(search): add s
 
 ## 3. Documentation plan
 
-| Audience | Where | What |
-|---|---|---|
+| Audience       | Where                                                                    | What                                                                                                 |
+|----------------|--------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
 | **Developers** | `docs/` in the repo (Markdown + Mermaid), later published as a docs site | Architecture, flows, database overview (ERD), class diagrams, REST API (generated OpenAPI), **ADRs** |
-| **Users** | A separate simple website, later | What Kreds is, the words, the privacy promise, the story; later short explainer videos |
+| **Users**      | A separate simple website, later                                         | What Kreds is, the words, the privacy promise, the story; later short explainer videos               |
 
 **ADRs (Architecture Decision Records):** one short file per decision in `docs/adr/` – context, decision, consequences.
 First candidates: end-to-end encryption with MLS, no AI, Nordic hosting, data classification, recovery in two layers.
@@ -84,6 +84,7 @@ First candidates: end-to-end encryption with MLS, no AI, Nordic hosting, data cl
 
 Not now. Docker Compose for development and the family prototype on one server. But build so that moving to
 Kubernetes later is easy:
+
 - The app is **stateless** – no data on the app server's disk; everything in Postgres, object storage, OpenSearch.
 - **Configuration via environment variables** (`.env`, never committed).
 - **Health endpoints** (Spring Boot Actuator) for liveness/readiness.
@@ -96,13 +97,14 @@ Kubernetes becomes its own learning phase when Kreds outgrows one server (Nordic
 
 ## 5. What the user already knows (from the notifyhub project)
 
-- Spring Boot 4 multi-module Maven, Java 21, Lombok, `@ConfigurationProperties`, `ApplicationRunner`, `@Order`
+- Spring Boot 4 multi-module Maven, Java 25, Lombok, `@ConfigurationProperties`, `ApplicationRunner`, `@Order`
 - `RestClient`, Jackson 3 (`ObjectMapper`, `JsonNode`, `ObjectNode`), central error handling (`defaultStatusHandler`)
 - OpenSearch: index, mapping (`text` vs `keyword`, multi-fields, `dynamic: strict`), CRUD, `_bulk`, `match` vs `term`,
   `terms`, `_analyze`, aliases, `_reindex`, atomic alias switch, `_update_by_query`, `nested` vs `object`,
   sub-aggregations (used at work); rollover and ISM are used at work
 - Mapping as Java code (`MappingBuilder`, incl. `nested` with a `Consumer`), index setup on startup, idempotency
 - Postgres as source of truth for the index setup: Flyway, JPA entity, `ddl-auto=validate`, JSONB
-- Tests: JUnit 5, Mockito, `@DataJpaTest` + Testcontainers, Surefire vs Failsafe (`*Test` vs `*IT`) – see `TESTING-NOTES.md`
+- Tests: JUnit 5, Mockito, `@DataJpaTest` + Testcontainers, Surefire vs Failsafe (`*Test` vs `*IT`) – see
+  `TESTING-NOTES.md`
 - At work: OpenSearch with REST + JSON and own DTOs (Spring Boot 2.x, no high-level client), RabbitMQ, S3 for raw data
 - React (frontend experience)
