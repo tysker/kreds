@@ -35,7 +35,7 @@
 
     <!-- Project Modules -->
     <modules>
-<!--        <module>kreds-core</module>-->
+        <module>kreds-core</module>
         <module>kreds-api</module>
         <module>kreds-app</module>
     </modules>
