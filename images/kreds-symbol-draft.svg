@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="512" height="512" role="img" aria-label="Kreds symbol draft: a tree inside a circle">
+  <title>Kreds – symbol draft</title>
+  <!-- The kreds: the circle -->
+  <circle cx="100" cy="100" r="88" fill="#F7F5F0" stroke="#3E5C76" stroke-width="6"/>
+
+  <g fill="none" stroke="#2F3A3F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Trunk -->
+    <path d="M100 140 L100 52"/>
+    <!-- Branches -->
+    <path d="M100 114 C 90 102, 76 94, 62 78"/>
+    <path d="M100 114 C 110 102, 124 94, 138 78"/>
+    <path d="M100 94 C 94 82, 86 72, 78 60"/>
+    <path d="M100 94 C 106 82, 114 72, 122 60"/>
+    <!-- Roots, mirroring the branches -->
+    <path d="M100 140 C 90 152, 78 158, 64 160" stroke="#3E5C76"/>
+    <path d="M100 140 C 110 152, 122 158, 136 160" stroke="#3E5C76"/>
+    <path d="M100 140 L100 168" stroke="#3E5C76"/>
+  </g>
+
+  <!-- Leaves: the people -->
+  <g fill="#6B8F71">
+    <circle cx="62" cy="78" r="8"/>
+    <circle cx="138" cy="78" r="8"/>
+    <circle cx="78" cy="60" r="8"/>
+    <circle cx="122" cy="60" r="8"/>
+    <circle cx="100" cy="48" r="8"/>
+  </g>
+</svg>
