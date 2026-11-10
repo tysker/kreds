@@ -14,13 +14,15 @@ Everything a new chat needs besides `VISION.md`: where we are, how we work, and 
 
 ### Phases
 
-| Phase | What                                                                                                                                                                                                 |
-|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **0** | Repository, Maven multi-module skeleton, Docker Compose (Postgres, OpenSearch + Dashboards, MinIO)                                                                                                   |
-| **1** | **Encryption spike:** two browsers, one encrypted 1:1 *snak*, with an MLS library. Criteria: works in the browser, maintained, licence fits copyleft, understandable docs. Fallback: Signal Protocol |
-| **2** | Keycloak: invite-only login (*bifrost* links), *kredse*                                                                                                                                              |
-| **3** | *Glimt*: encrypted text + photo, *Stuen*                                                                                                                                                             |
-| later | See "Features → Later" in `VISION.md`; OpenSearch jobs (logs/audit, places, metadata statistics); Kubernetes                                                                                         |
+| Phase  | What                                                                                                                                                                                                                   |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **0**  | Repository, Maven multi-module skeleton, Docker Compose (Postgres, OpenSearch + Dashboards, MinIO)                                                                                                                     |
+| **0b** | **Mockup** (parallel to Phase 0/1): the MVP screens + *fika*, light and dark – first draft done as a Claude Design canvas ("Kreds – first mockup"). Refine on paper / in Penpot; becomes the reference for `kreds-web` |
+| **1**  | **Encryption spike:** two browsers, one encrypted 1:1 *snak*, with an MLS library. Criteria: works in the browser, maintained, licence fits copyleft, understandable docs. Fallback: Signal Protocol                   |
+| **2**  | Keycloak: invite-only login (*bifrost* links), *kredse*                                                                                                                                                                |
+| **3**  | *Glimt*: encrypted text + photo, *Stuen*                                                                                                                                                                               |
+| **4**  | ***Fika***: get-togethers with answers (coming / maybe / can't), own *svar* thread, calendar file, *tak*                                                                                                               |
+| later  | See "Features → Later" in `VISION.md`; OpenSearch jobs (logs/audit, places, metadata statistics); Kubernetes                                                                                                           |
 
 ---
 
@@ -97,7 +99,7 @@ Kubernetes becomes its own learning phase when Kreds outgrows one server (Nordic
 
 ## 5. What the user already knows (from the notifyhub project)
 
-- Spring Boot 4 multi-module Maven, Java 25, Lombok, `@ConfigurationProperties`, `ApplicationRunner`, `@Order`
+- Spring Boot 4 multi-module Maven, Java 21, Lombok, `@ConfigurationProperties`, `ApplicationRunner`, `@Order`
 - `RestClient`, Jackson 3 (`ObjectMapper`, `JsonNode`, `ObjectNode`), central error handling (`defaultStatusHandler`)
 - OpenSearch: index, mapping (`text` vs `keyword`, multi-fields, `dynamic: strict`), CRUD, `_bulk`, `match` vs `term`,
   `terms`, `_analyze`, aliases, `_reindex`, atomic alias switch, `_update_by_query`, `nested` vs `object`,
