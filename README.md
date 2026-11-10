@@ -11,7 +11,7 @@ See [VISION.md](VISION.md) for the idea, the principles and all decisions.
 
 ## Stack
 
-Java 25 · Spring Boot 4 · Postgres · OpenSearch · Keycloak · RabbitMQ · S3 (MinIO locally) · React PWA
+Java 25 · Spring Boot 4 · Postgres · OpenSearch · Keycloak · RabbitMQ · S3 (Garage locally) · React PWA
 
 ## Getting started
 

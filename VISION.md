@@ -189,7 +189,7 @@ This applies to every service, including the ones that sneak in unnoticed.
 | Servers                            | A Nordic provider (planned: **UpCloud**, Helsinki)                                                            |
 | Object storage – development       | **MEGA S4**, European endpoint (Amsterdam or Luxembourg), **test data only** (MEGA is a non-European company) |
 | Object storage – before real users | **UpCloud** Managed Object Storage, Helsinki                                                                  |
-| Object storage – local             | **MinIO** in Docker                                                                                           |
+| Object storage – local             | **Garage** in Docker (S3-compatible, open source, made in Europe)                                             |
 | Fonts                              | Self-hosted, no font CDN                                                                                      |
 | Maps                               | OpenStreetMap-based tiles from a European provider                                                            |
 | Email (invites)                    | A European email provider                                                                                     |
@@ -223,7 +223,7 @@ The code only talks the **S3 API**, so switching storage providers is configurat
 | Search & analytics | OpenSearch 3.x, via REST + JSON (own DTOs, no high-level client)          |
 | Login              | Keycloak (invite-only, *kredse* as groups)                                |
 | Events             | RabbitMQ                                                                  |
-| Files              | S3 API (MinIO locally)                                                    |
+| Files              | S3 API (Garage locally)                                                   |
 | Real-time          | WebSockets                                                                |
 | Encryption         | MLS library (verified in the spike; fallback: Signal Protocol)            |
 | Frontend           | React + Vite + TypeScript, as a PWA                                       |
