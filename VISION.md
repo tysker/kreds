@@ -8,7 +8,7 @@ and keep memories – without ads, without strangers, without AI and without an 
 It is meant as a Nordic alternative to Instagram, Facebook, Snapchat and WhatsApp.
 
 **The promise:** *Only the people in your kreds can see what you share. Not us, not anyone else.*
- 
+
 ---
 
 ## 1. Who it is for
@@ -30,7 +30,6 @@ It is meant as a Nordic alternative to Instagram, Facebook, Snapchat and WhatsAp
 | **Built to grow**       | Everything belongs to a kreds. Never assume "there is only one family".                                                |
 | **Listen to the users** | In-app feedback from day one.                                                                                          |
 
- 
 ---
 
 ## 3. The words
@@ -150,8 +149,9 @@ packages it cannot open.
 2. **Recovery key** (backup, when the old phone is lost): a long random key, created once by the app,
    shown as words or a code. The user stores it in a password manager or prints it. Lost key = lost history –
    said clearly.
-   **No short PIN:** without special security hardware on the server, a PIN could simply be guessed by whoever
-   holds the encrypted backup – including the server operator.
+
+**No short PIN:** without special security hardware on the server, a PIN could simply be guessed by whoever
+holds the encrypted backup – including the server operator.
 
 ### Data classification
 
@@ -200,7 +200,7 @@ This applies to every service, including the ones that sneak in unnoticed.
 | Push notifications                 | Browser push services (exception, see above)                                                                      |
 
 The code only talks the **S3 API**, so switching storage providers is configuration, not code.
- 
+
 ---
 
 ## 7. Design
@@ -221,7 +221,7 @@ The code only talks the **S3 API**, so switching storage providers is configurat
 
 | Part               | Choice                                                                    |
 |--------------------|---------------------------------------------------------------------------|
-| Backend            | Java 21, Spring Boot 4, Maven multi-module, Lombok                        |
+| Backend            | Java 25, Spring Boot 4, Maven multi-module, Lombok                        |
 | Database           | Postgres + Flyway                                                         |
 | Search & analytics | OpenSearch 3.x, via REST + JSON (own DTOs, no high-level client)          |
 | Login              | Keycloak (invite-only, *kredse* as groups)                                |
@@ -243,7 +243,6 @@ The code only talks the **S3 API**, so switching storage providers is configurat
 | `kreds-notify` | Notifications (push, email)                                 | `notifyhub-core`   |
 | `kreds-web`    | React PWA, incl. encryption and on-device search            | new                |
 
- 
 ---
 
 ## 9. OpenSearch in Kreds
@@ -261,7 +260,7 @@ never stored or logged. The chosen place is part of the encrypted *fika*.
 
 **Memory:** a family-sized Kreds runs fine with a small heap (512 MB–1 GB). Rule of thumb: at most half of the server's
 RAM as heap.
- 
+
 ---
 
 ## 10. Going public later
@@ -271,7 +270,9 @@ RAM as heap.
 - Everything belongs to a kreds, and every request is checked against membership.
 - Sign-up through Keycloak – open registration later is mostly configuration.
 - English code, Nordic words only as UI labels.
-  **Needed before going public:**
+
+**Needed before going public:**
+
 - Storage quotas per user, rate limiting, scaling.
 - **Legal:** privacy policy, data export and deletion, agreements with every service used,
   handling reports of illegal content. Needs proper legal advice.

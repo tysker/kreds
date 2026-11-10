@@ -28,6 +28,9 @@ docker compose up -d          # Postgres, OpenSearch, OpenSearch Dashboards
 | Postgres              | `localhost:5432`      |
 | OpenSearch            | http://localhost:9200 |
 | OpenSearch Dashboards | http://localhost:5601 |
+| Garage (S3)           | http://localhost:3900 |
+
+First start? See [docs/local-setup.md](docs/local-setup.md)
 
 ## Documentation
 

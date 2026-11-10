@@ -1,7 +1,7 @@
 # Kreds – context
 
 Everything a new chat needs besides `VISION.md`: where we are, how we work, and what the user already knows.
- 
+
 ---
 
 ## 1. Where we are
@@ -34,7 +34,6 @@ Everything a new chat needs besides `VISION.md`: where we are, how we work, and 
 | **4**  | ***Fika***: get-togethers with answers (coming / maybe / can't), own *svar* thread, calendar file, *tak*                                                                                                               |
 | later  | See "Features → Later" in `VISION.md`; OpenSearch jobs (logs/audit, places, metadata statistics); Kubernetes                                                                                                           |
 
- 
 ---
 
 ## 2. How we work
@@ -80,7 +79,7 @@ Every step / phase follows this checklist. It also lives in the repo as the pull
 
 Examples: `feat(core): add Circle entity and repository` · `test(search): add security filter tests` ·
 `docs: add ADR for end-to-end encryption` · `chore: add docker compose for postgres and opensearch`
- 
+
 ---
 
 ## 3. Documentation plan
@@ -93,7 +92,7 @@ Examples: `feat(core): add Circle entity and repository` · `test(search): add s
 **ADRs (Architecture Decision Records):** one short file per decision in `docs/adr/` – context, decision, consequences.
 First candidates: end-to-end encryption with MLS, no AI, Nordic hosting, data classification, recovery in two layers,
 Garage instead of MinIO.
- 
+
 ---
 
 ## 4. Scaling and Kubernetes
@@ -106,7 +105,8 @@ Kubernetes later is easy:
 - **Health endpoints** (Spring Boot Actuator) for liveness/readiness.
 - Everything runs as **containers**.
 - WebSockets need attention when scaling to several app instances (shared message broker) – later.
-  Kubernetes becomes its own learning phase when Kreds outgrows one server (Nordic providers offer managed Kubernetes).
+
+Kubernetes becomes its own learning phase when Kreds outgrows one server (Nordic providers offer managed Kubernetes).
 
 ---
 
