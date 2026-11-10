@@ -11,6 +11,7 @@ The setup is stored in the Docker volume, so it is only needed after the first s
 docker exec kreds-garage /garage status
 
 # 2. Give the node a role: zone "dc1", 1 GB capacity – then apply
+# <node-id> = the ID column from "garage status"
 docker exec kreds-garage /garage layout assign -z dc1 -c 1G <node-id>
 docker exec kreds-garage /garage layout apply --version 1
 

@@ -19,7 +19,7 @@ Requires Java 25, Docker and Docker Compose.
 
 ```
 cp .env.example .env          # then change the passwords in .env
-docker compose up -d          # Postgres, OpenSearch, OpenSearch Dashboards
+docker compose up -d          # Postgres, OpenSearch, Dashboards, Garage.
 ./mvnw verify                 # build all modules and run all tests
 ```
 
