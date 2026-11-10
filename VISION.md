@@ -70,6 +70,9 @@ The Nordic words exist **only as UI labels**. That keeps them easy to change and
 - **koselig** – the one reaction on a *glimt*: "this made me feel cosy".
 - **tak** – for people, not posts. After a *fika*, guests get a "Send tak" button that sends the host
   *"Tak for i dag!"*. Also a one-tap answer when someone adds photos of you to a *hetki*.
+- **fika** – a get-together inside a *kreds*: what, when, where. Members answer *I'm coming*,
+  *Maybe* or *Can't come*. Every *fika* has its own *svar* thread, so planning the julefrokost
+  doesn't get mixed up with everything else. "Add to my calendar" creates a calendar file on the device.
 - **hygge** – a button. Pressed: no notifications at all, until pressed again. Messages still arrive;
   everything is waiting in *Stuen* and *nyt* afterwards. **Optional per user:** others may see a small
   hygge symbol next to your name.
@@ -106,10 +109,11 @@ encrypted with an established library. If it works, the rest is designed around 
 
 ### Later
 
+- *Fika* – plan get-togethers (date, place, who's coming), each with its own *svar* thread, + *tak*.
+  **First feature after the MVP.**
 - *Snak* (1:1) and *prat* (group) – live chat
 - *Hetki* – shared event albums
 - *Tur* – trip albums and a map of places
-- *Fika* – plan get-togethers (date, place, who's coming) + *tak*
 - *Minder* – "on this day"
 - *Moi* – a quick wave
 - *Lagom* notification settings
@@ -155,11 +159,11 @@ holds the encrypted backup – including the server operator.
 **Rule: when in doubt, encrypt.** Data the server has seen cannot be "unseen". Every server-visible field needs a
 reason.
 
-| Level                                                                | What                                                                                                                                                                   | Why                                                                               |
-|----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| **End-to-end encrypted**                                             | Text of *glimt*, *svar*, *snak*, *prat*; photos and videos; *fika* details; names of *kredse*, *hetki* and *tur*; locations                                            | The actual private life                                                           |
-| **Server-visible, protected** (encrypted at rest, access-controlled) | Email, display name, kreds membership, IDs, timestamps, file sizes, reactions (*koselig*: who and how many), *lagom*/*hygge* settings, public keys, devices, audit log | Needed for invites, delivery, notifications, *ting*, *minder*, *saga*, statistics |
-| **Not personal**                                                     | OpenStreetMap places, word explanations, app texts                                                                                                                     | Public anyway                                                                     |
+| Level                                                                | What                                                                                                                                                                                                                   | Why                                                                                          |
+|----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| **End-to-end encrypted**                                             | Text of *glimt*, *svar*, *snak*, *prat*; photos and videos; *fika* details and answers (who's coming); names of *kredse*, *hetki* and *tur*; locations                                                                 | The actual private life                                                                      |
+| **Server-visible, protected** (encrypted at rest, access-controlled) | Email, display name, kreds membership, IDs, timestamps, file sizes, reactions (*koselig*: who and how many), *lagom*/*hygge* settings, public keys, devices, audit log, date and time of a *fika* (no title, no place) | Needed for invites, delivery, notifications, reminders, *ting*, *minder*, *saga*, statistics |
+| **Not personal**                                                     | OpenStreetMap places, word explanations, app texts                                                                                                                                                                     | Public anyway                                                                                |
 
 **In the code:** every entity has its **metadata columns** plus **one encrypted blob** (`ciphertext`) for all content.
 A test proves that no content fields exist in the database schema or the OpenSearch mappings.
@@ -218,7 +222,7 @@ The code only talks the **S3 API**, so switching storage providers is configurat
 
 | Part               | Choice                                                                    |
 |--------------------|---------------------------------------------------------------------------|
-| Backend            | Java 25, Spring Boot 4, Maven multi-module, Lombok                        |
+| Backend            | Java 21, Spring Boot 4, Maven multi-module, Lombok                        |
 | Database           | Postgres + Flyway                                                         |
 | Search & analytics | OpenSearch 3.x, via REST + JSON (own DTOs, no high-level client)          |
 | Login              | Keycloak (invite-only, *kredse* as groups)                                |
@@ -251,6 +255,9 @@ OpenSearch **never** holds private content. It has three jobs:
 | **Logs, metrics and security audit**                                        | Time-based indices, rollover + ISM, index templates, aliases, dashboards, alerts, raw data in object storage  |
 | **Places search** for *fika* and *tur* (OpenStreetMap data for the Nordics) | Search-as-you-type, `geo_point`, geo distance, analyzers for Nordic spelling (*Århus* = *Aarhus*, *ø* = *oe*) |
 | **Statistics on metadata** (year in review, Sunday summary counts)          | Aggregations and sub-aggregations, date histograms                                                            |
+
+Place searches for *fika* and *tur* reach the server (public OpenStreetMap data), but the queries are
+never stored or logged. The chosen place is part of the encrypted *fika*.
 
 **Memory:** a family-sized Kreds runs fine with a small heap (512 MB–1 GB). Rule of thumb: at most half of the server's
 RAM as heap.
@@ -295,3 +302,6 @@ nobody may use the code. It may become private later.
 - More Swedish and Finnish words as features appear; Icelandic and Faroese when new features come,
   or when an existing word is swapped.
 - The Yggdrasil app symbol: first draft exists (`kreds-symbol-draft.svg`) – refine later, maybe with a designer.
+- A *kreds* inside a *kreds* (e.g. a work *kreds* planning julefrokost, summer party, ...): not decided.
+  Options: *fika* threads only · grouping *kredse* on the device · real nested *kredse* (large: own
+  encrypted group and keys). Revisit when real users ask for it.
