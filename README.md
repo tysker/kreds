@@ -15,7 +15,19 @@ Java 25 · Spring Boot 4 · Postgres · OpenSearch · Keycloak · RabbitMQ · S3
 
 ## Getting started
 
-Coming in Phase 0: Docker Compose and the Maven build.
+Requires Java 25, Docker and Docker Compose.
+
+```
+cp .env.example .env          # then change the passwords in .env
+docker compose up -d          # Postgres, OpenSearch, OpenSearch Dashboards
+./mvnw verify                 # build all modules and run all tests
+```
+
+| Service               | Address               |
+|-----------------------|-----------------------|
+| Postgres              | `localhost:5432`      |
+| OpenSearch            | http://localhost:9200 |
+| OpenSearch Dashboards | http://localhost:5601 |
 
 ## Documentation
 
