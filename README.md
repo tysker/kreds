@@ -1,5 +1,7 @@
 # Kreds
 
+![Build](https://github.com/tysker/kreds/actions/workflows/build.yml/badge.svg)
+
 > A calm, private place for the people you actually know. Made in the Nordics.
 
 Kreds (Danish for *circle*) is a private, end-to-end encrypted social app for family and friends –
@@ -34,7 +36,6 @@ First start? See [docs/local-setup.md](docs/local-setup.md)
 
 ## Documentation
 
-- [VISION.md](VISION.md) – what Kreds is and why
 - `docs/` – developer documentation (coming)
 
 ## Licence
