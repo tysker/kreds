@@ -1,9 +1,17 @@
 import {type FormEvent, useEffect, useRef, useState} from 'react'
-import {SnakDevice} from './crypto/coreCrypto'
+import type {MlsLibrary, SnakDevice} from './crypto/snakDevice'
 import {onMessage, send, toHexPreview} from './spikeChannel'
+import {TsMlsSnakDevice} from "./crypto/tsMls.ts";
+import {CoreCryptoSnakDevice} from "./crypto/coreCrypto.ts";
 
 /** Each tab plays one person: ?user=anna or ?user=bjorn */
-const me = new URLSearchParams(window.location.search).get('user') ?? 'anna'
+const params = new URLSearchParams(window.location.search)
+const me = params.get('user') ?? 'anna'
+
+/** ?lib=ts-mls picks the comparison library; core-crypto is the default. */
+const library: MlsLibrary = params.get('lib') === 'ts-mls' ? 'ts-mls' : 'core-crypto'
+const createDevice = (): Promise<SnakDevice> =>
+    library === 'ts-mls' ? TsMlsSnakDevice.create() : CoreCryptoSnakDevice.create()
 
 type LogLine = { id: number; kind: 'sent' | 'received' | 'info' | 'error'; text: string; wire?: string }
 
@@ -54,7 +62,7 @@ function App() {
             })
         })
 
-        SnakDevice.create()
+        createDevice()
             .then(async (device) => {
                 if (isCancelled) return
                 deviceRef.current = device
@@ -63,7 +71,7 @@ function App() {
                 send({type: 'key-package', from: me, bytes: await device.createKeyPackage()})
                 send({type: 'key-package-request', from: me})
             })
-            .catch((error: unknown) => addLog({kind: 'error', text: `core-crypto failed: ${String(error)}`}))
+            .catch((error: unknown) => addLog({kind: 'error', text: `${library} failed: ${String(error)}`}))
 
         return () => {
             isCancelled = true
@@ -100,7 +108,7 @@ function App() {
 
     return (
         <main>
-            <h1>Kreds – MLS spike ({me})</h1>
+            <h1>Kreds – MLS spike ({me}, {library})</h1>
             <p id="status">{isReady ? 'device ready ✓' : 'creating device…'}</p>
 
             {isReady && !hasSnak && (

@@ -15,6 +15,7 @@ import {
     version,
     Welcome,
 } from '@wireapp/core-crypto'
+import type {SnakDevice} from "./snakDevice.ts";
 
 let loading: Promise<string> | null = null
 
@@ -31,7 +32,7 @@ const SPIKE_DOMAIN = 'spike.kreds.local'
  * One person's device in the spike: its own key store, its own MLS identity
  * and at most one 1:1 conversation (a snak).
  */
-export class SnakDevice {
+export class CoreCryptoSnakDevice implements SnakDevice {
     /** The Welcome produced by the last commit; read once by {@link startSnakWith}. */
     private pendingWelcome: Uint8Array | null = null
     private conversationId: ConversationId | null = null
@@ -47,14 +48,14 @@ export class SnakDevice {
      * Creates a fresh device with an in-memory key store.
      * In-memory means: reload the tab and the keys are gone (fine for a spike, not for Kreds).
      */
-    static async create(): Promise<SnakDevice> {
+    static async create(): Promise<CoreCryptoSnakDevice> {
         await loadCoreCrypto()
         const coreCrypto = CoreCrypto.new(Database.inMemory())
         const clientId = new ClientId(new Uuid(crypto.randomUUID()), new DeviceId(1n), SPIKE_DOMAIN)
 
         // core-crypto hands every commit to this transport and waits for the "server" to accept it.
         // There is no server in the spike, so we accept everything and keep the Welcome for later.
-        let device: SnakDevice | null = null
+        let device: CoreCryptoSnakDevice | null = null
         const transport: MlsTransport = {
             sendCommitBundle: async (bundle) => {
                 if (device && bundle.welcome) device.pendingWelcome = bundle.welcome.serialize()
@@ -66,7 +67,7 @@ export class SnakDevice {
             await ctx.mlsInit(clientId, transport)
             return ctx.addCredential(Credential.basic(cipherSuiteDefault(), clientId))
         })
-        device = new SnakDevice(coreCrypto, credentialRef)
+        device = new CoreCryptoSnakDevice(coreCrypto, credentialRef)
         return device
     }
 
