@@ -24,4 +24,15 @@ Question: can Kreds do MLS end-to-end encryption in the browser – safely, and 
 
 ## Findings – ts-mls
 
-(Step 3b)
+| Question                                  | Result                                                                                                                                  |
+|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| Encrypted 1:1 message between two devices | ✅ Works both ways                                                                                                                       |
+| Tampered message                          | ✅ Rejected (`CryptoError: OperationError`)                                                                                              |
+| Message length hidden                     | ✅ Padded (short messages are all 334 bytes)                                                                                             |
+| Size                                      | ✅ ~131 kB JS, ~36 kB gzip, no WASM (core-crypto: ~300 kB JS + 8.1 MB WASM, ~3 MB gzip)                                                  |
+| Packaging                                 | ⚠ 1.6.4 imports `@noble/hashes` without declaring it; we must install it ourselves                                                      |
+| API style                                 | ✅ Plain functions and objects, readable; ⚠ we must keep the new state after every call and wipe used keys ourselves (easy to get wrong) |
+| Key storage                               | ⚠ Nothing built in; `encodeGroupState` exists, but storing it encrypted (e.g. in IndexedDB) is our job                                  |
+| Audited                                   | ⚠ No (the README says so itself); had a high-severity advisory fixed in 1.6.4                                                           |
+| Licence                                   | ✅ MIT                                                                                                                                   |
+
