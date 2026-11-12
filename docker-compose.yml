@@ -2,7 +2,7 @@ name: kreds
 
 services:
   postgres:
-    image: postgres:17
+    image: postgres:18
     container_name: kreds-postgres
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
