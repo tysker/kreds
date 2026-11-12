@@ -15,3 +15,13 @@ Question: can Kreds do MLS end-to-end encryption in the browser – safely, and 
 ## Findings – ts-mls
 
 (Step 3b)
+
+| Question                                  | Result                                                                                                                                                                  |
+|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Encrypted 1:1 message between two devices | ✅ Works both ways                                                                                                                                                       |
+| Tampered message                          | ✅ Rejected                                                                                                                                                              |
+| Message length hidden                     | ✅ Padded (short messages are all 190 bytes)                                                                                                                             |
+| What the server can see                   | ⚠ The header is readable: group id and epoch (metadata, by design in MLS); content is not                                                                               |
+| API ceremony                              | ⚠ Wire-shaped `ClientId` (UUID + device id + domain), a mandatory `MlsTransport` callback, everything inside transactions                                               |
+| Error messages                            | ⚠ Vague: a tampered message gives only `CoreCryptoError.Mls`                                                                                                            |
+| Key storage                               | ⚠ Spike uses `Database.inMemory()`; persistent storage (`Database.open` + a 32-byte key) raises the question of where that key lives, which ties to our recovery design |
