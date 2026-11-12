@@ -34,7 +34,6 @@ First start? See [docs/local-setup.md](docs/local-setup.md)
 
 ## Documentation
 
-- [VISION.md](VISION.md) – what Kreds is and why
 - `docs/` – developer documentation (coming)
 
 ## Licence
