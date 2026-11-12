@@ -54,7 +54,7 @@ services:
         condition: service_healthy
 
   garage:
-    image: dxflrs/garage:v2.2.0
+    image: dxflrs/garage:v2.5.0
     container_name: kreds-garage
     environment:
       GARAGE_RPC_SECRET: ${GARAGE_RPC_SECRET}
