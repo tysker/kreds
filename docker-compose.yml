@@ -25,7 +25,7 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:26.8.2
     container_name: kreds-keycloak
-    # Development mode: plain HTTP, relaxed hostname checks. Never on a server (see KREDS-CONTEXT "before any server").
+    # Development mode: plain HTTP, relaxed hostname checks. A server needs production mode (start, HTTPS, hostname).
     command: start-dev
     environment:
       KC_DB: postgres
