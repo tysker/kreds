@@ -7,8 +7,6 @@
 Kreds (Danish for *circle*) is a private, end-to-end encrypted social app for family and friends –
 a Nordic alternative to Instagram, Facebook, Snapchat and WhatsApp. No ads, no strangers, no AI.
 
-See [VISION.md](VISION.md) for the idea, the principles and all decisions.
-
 **Status:** early prototype – Phase 0 (setup). Family and friends only.
 
 ## Stack
