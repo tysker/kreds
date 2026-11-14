@@ -26,7 +26,7 @@ services:
     image: quay.io/keycloak/keycloak:26.8.2
     container_name: kreds-keycloak
     # Development mode: plain HTTP, relaxed hostname checks. A server needs production mode (start, HTTPS, hostname).
-    command: start-dev
+    command: start-dev --import-realm
     environment:
       KC_DB: postgres
       KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
@@ -38,6 +38,8 @@ services:
       KC_HEALTH_ENABLED: "true"
     ports:
       - "127.0.0.1:8180:8080"   # 8080 on the host is kept free for Spring Boot
+    volumes:
+      - ./keycloak/realm:/opt/keycloak/data/import:ro
     depends_on:
       postgres:
         condition: service_healthy
