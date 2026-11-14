@@ -23,3 +23,22 @@ docker exec kreds-garage /garage bucket allow --read --write --owner kreds-media
 
 Copy the key id and secret from `key create` into `.env`
 (`GARAGE_ACCESS_KEY_ID`, `GARAGE_SECRET_ACCESS_KEY`).
+
+## Postgres – databases and roles
+
+On the first start (empty volume), `postgres/init/10-create-databases.sh` creates:
+
+| Database   | Owner role | Used by              |
+|------------|------------|----------------------|
+| `kreds`    | `kreds`    | Spring Boot (Flyway) |
+| `keycloak` | `keycloak` | Keycloak             |
+
+Neither role is a superuser, and neither can connect to the other's database.
+The `postgres` superuser is for maintenance only.
+
+The script runs **only when the volume is empty**. After changing it, recreate the volume
+(this deletes all local Postgres data):
+
+    docker compose down
+    docker volume rm kreds_postgres-data
+    docker compose up -d postgres
