@@ -7,8 +7,6 @@
 Kreds (Danish for *circle*) is a private, end-to-end encrypted social app for family and friends –
 a Nordic alternative to Instagram, Facebook, Snapchat and WhatsApp. No ads, no strangers, no AI.
 
-See [VISION.md](VISION.md) for the idea, the principles and all decisions.
-
 **Status:** early prototype – Phase 0 (setup). Family and friends only.
 
 ## Stack
@@ -25,12 +23,13 @@ docker compose up -d          # Postgres, OpenSearch, Dashboards, Garage.
 ./mvnw verify                 # build all modules and run all tests
 ```
 
-| Service               | Address               |
-|-----------------------|-----------------------|
-| Postgres              | `localhost:5432`      |
-| OpenSearch            | http://localhost:9200 |
-| OpenSearch Dashboards | http://localhost:5601 |
-| Garage (S3)           | http://localhost:3900 |
+| Service               | Address                     |
+|-----------------------|-----------------------------|
+| Postgres              | `localhost:5432`            |
+| OpenSearch            | http://localhost:9200       |
+| OpenSearch Dashboards | http://localhost:5601       |
+| Garage (S3)           | http://localhost:3900       |
+| Keycloak (admin)      | http://localhost:8180/admin |
 
 First start? See [docs/local-setup.md](docs/local-setup.md)
 

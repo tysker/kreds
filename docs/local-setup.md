@@ -42,3 +42,13 @@ The script runs **only when the volume is empty**. After changing it, recreate t
     docker compose down
     docker volume rm kreds_postgres-data
     docker compose up -d postgres
+
+## Keycloak
+
+Runs in development mode (`start-dev`) on http://localhost:8180, with its data in the `keycloak` database.
+
+- Admin console: http://localhost:8180/admin – log in with `KEYCLOAK_ADMIN_USER` / `KEYCLOAK_ADMIN_PASSWORD`.
+- This bootstrap admin is created on the **first start only** and is meant to be temporary. Changing the
+  values in `.env` later has no effect.
+- The `master` realm is only for administering Keycloak. Kreds uses its own realm `kreds`.
+- Health: port 9000 inside the container (used by the Docker health check, not published).
