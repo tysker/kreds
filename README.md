@@ -7,7 +7,7 @@
 Kreds (Danish for *circle*) is a private, end-to-end encrypted social app for family and friends –
 a Nordic alternative to Instagram, Facebook, Snapchat and WhatsApp. No ads, no strangers, no AI.
 
-**Status:** early prototype – Phase 0 (setup). Family and friends only.
+**Status:** early prototype – Phase 2 (login with Keycloak). Family and friends only.
 
 ## Stack
 
@@ -19,7 +19,7 @@ Requires Java 25, Docker and Docker Compose.
 
 ```
 cp .env.example .env          # then change the passwords in .env
-docker compose up -d          # Postgres, OpenSearch, Dashboards, Garage.
+docker compose up -d          # Postgres, Keycloak, OpenSearch, Dashboards, Garage.
 ./mvnw verify                 # build all modules and run all tests
 ```
 
