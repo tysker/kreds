@@ -107,7 +107,7 @@ services:
   loki-init:
     # One-shot: new volumes belong to root, but Loki runs as the unprivileged user 10001.
     # Hands the data volume to that user, then exits. Loki itself never runs as root.
-    image: busybox:1.37.0
+    image: busybox:1.38.0
     container_name: kreds-loki-init
     labels:
       kreds.service: loki-init
