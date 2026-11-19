@@ -118,7 +118,7 @@ services:
     restart: "no"
 
   loki:
-    image: grafana/loki:3.6.0   # newest stable 3.x.y – check before committing
+    image: grafana/loki:3.7.10   # newest stable 3.x.y – check before committing
     container_name: kreds-loki
     labels:
       kreds.service: loki
