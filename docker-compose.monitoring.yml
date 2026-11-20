@@ -55,7 +55,7 @@ services:
     # No ports: only Prometheus reaches it, over the Docker network (9187)
 
   grafana:
-    image: grafana/grafana:13.1.0   # OSS edition (AGPL-3.0) – never grafana-enterprise
+    image: grafana/grafana:13.3.1   # OSS edition (AGPL-3.0) – never grafana-enterprise
     container_name: kreds-grafana
     labels:
       kreds.service: grafana
