@@ -1,0 +1,43 @@
+opencollection: 1.0.0
+
+info:
+  name: Linden
+  version: 1.0.0
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+
+request:
+  auth:
+    type: oauth2
+    flow: authorization_code
+    authorizationUrl: http://localhost:8180/realms/linden/protocol/openid-connect/auth
+    accessTokenUrl: http://localhost:8180/realms/linden/protocol/openid-connect/token
+    callbackUrl: http://localhost:5173/
+    credentials:
+      clientId: linden-web
+      placement: body
+    scope: openid
+    pkce: {}
+    tokenConfig:
+      id: credentials
+      placement:
+        header: Bearer
+      source: access_token
+    settings:
+      autoFetchToken: true
+      autoRefreshToken: false
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

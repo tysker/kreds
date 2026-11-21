@@ -1,6 +1,6 @@
-# Prometheus scrape configuration for Kreds. Targets are added one service at a time.
+# Prometheus scrape configuration for Linden. Targets are added one service at a time.
 global:
-  scrape_interval: 30s       # calm: enough for a family-sized Kreds, less storage
+  scrape_interval: 30s       # calm: enough for a family-sized Linden, less storage
   evaluation_interval: 30s
 
 scrape_configs:
@@ -25,10 +25,10 @@ scrape_configs:
     static_configs:
       - targets: [ "postgres-exporter:9187" ]
 
-  - job_name: kreds-app
+  - job_name: linden-app
     metrics_path: /actuator/prometheus
     static_configs:
-      - targets: [ "host.docker.internal:8081" ]   # the app runs on the host for now; later kreds-app:8081
+      - targets: [ "host.docker.internal:8081" ]   # the app runs on the host for now; later linden-app:8081
 
   - job_name: loki
     static_configs:

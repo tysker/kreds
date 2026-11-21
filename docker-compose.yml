@@ -1,4 +1,4 @@
-name: kreds
+name: linden
 
 # Shared log settings: rotate at 10 MB, keep 3 files per container.
 # json-file stays the driver because log collectors read these files.
@@ -7,21 +7,21 @@ x-logging: &default-logging
   options:
     max-size: "10m"
     max-file: "3"
-    labels: "kreds.service"
+    labels: "linden.service"
 
 services:
   postgres:
     image: postgres:17
-    container_name: kreds-postgres
+    container_name: linden-postgres
     labels:
-      kreds.service: postgres
+      linden.service: postgres
     logging: *default-logging
     environment:
       POSTGRES_USER: ${POSTGRES_ADMIN_USER}
       POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD}
       POSTGRES_DB: postgres
       # Read by postgres/init/10-create-databases.sh on the first start
-      KREDS_DB_PASSWORD: ${KREDS_DB_PASSWORD}
+      LINDEN_DB_PASSWORD: ${LINDEN_DB_PASSWORD}
       KEYCLOAK_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
       MONITORING_DB_PASSWORD: ${MONITORING_DB_PASSWORD}
     ports:
@@ -37,9 +37,9 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.8.2
-    container_name: kreds-keycloak
+    container_name: linden-keycloak
     labels:
-      kreds.service: keycloak
+      linden.service: keycloak
     logging: *default-logging
     # Development mode: plain HTTP, relaxed hostname checks. A server needs production mode (start, HTTPS, hostname).
     command: start-dev --import-realm
@@ -75,9 +75,9 @@ services:
 
   garage:
     image: dxflrs/garage:v2.5.0
-    container_name: kreds-garage
+    container_name: linden-garage
     labels:
-      kreds.service: garage
+      linden.service: garage
     logging: *default-logging
     environment:
       GARAGE_RPC_SECRET: ${GARAGE_RPC_SECRET}

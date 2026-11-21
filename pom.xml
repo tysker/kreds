@@ -11,13 +11,13 @@
     </parent>
 
     <!-- Module Information -->
-    <groupId>dk.nordics</groupId>
-    <artifactId>kreds</artifactId>
+    <groupId>io.github.projectlinden</groupId>
+    <artifactId>linden</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <!-- Project Information   -->
-    <name>Kreds</name>
+    <name>Linden</name>
     <description>A calm, private, end-to-end encrypted social app for family and friends. Made in the Nordics.
     </description>
 
@@ -38,9 +38,9 @@
 
     <!-- Project Modules -->
     <modules>
-        <module>kreds-core</module>
-        <module>kreds-api</module>
-        <module>kreds-app</module>
+        <module>linden-core</module>
+        <module>linden-api</module>
+        <module>linden-app</module>
     </modules>
 
     <!-- Project Dependencies -->
@@ -48,13 +48,13 @@
 
         <dependencies>
             <dependency>
-                <groupId>dk.nordics</groupId>
-                <artifactId>kreds-core</artifactId>
+                <groupId>io.github.projectlinden</groupId>
+                <artifactId>linden-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>dk.nordics</groupId>
-                <artifactId>kreds-api</artifactId>
+                <groupId>io.github.projectlinden</groupId>
+                <artifactId>linden-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

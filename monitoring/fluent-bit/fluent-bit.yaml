@@ -1,4 +1,4 @@
-# Fluent Bit – the one filter point for Kreds logs (ADR-0003, ADR-0004).
+# Fluent Bit – the one filter point for Linden logs (ADR-0003, ADR-0004).
 # Reads the Docker log files, keeps only approved services and only the fields we need, and sends them to Loki.
 # Personal data must be removed HERE, before anything is stored (see docs/operations/log-inventory.md).
 
@@ -31,7 +31,7 @@ pipeline:
       skip_long_lines: on
 
   filters:
-    # attrs.kreds.service (copied by Docker from the container label) → top-level field "service"
+    # attrs.linden.service (copied by Docker from the container label) → top-level field "service"
     - name: nest
       match: docker.*
       operation: lift
@@ -39,7 +39,7 @@ pipeline:
 
     - name: modify
       match: docker.*
-      rename: kreds.service service
+      rename: linden.service service
 
     # Allow list: only services whose logs are free of personal data – or made free of it by redact.lua.
     # Lines without a service label (other containers on this machine) are dropped too.
@@ -67,7 +67,7 @@ pipeline:
       host: loki
       port: 3100
       # Few, fixed labels – never personal ones (ADR-0004)
-      labels: env=${KREDS_ENV}, service=$service
+      labels: env=${LINDEN_ENV}, service=$service
       remove_keys: service
       line_format: key_value
       drop_single_key: raw            # the stored line is just the log text

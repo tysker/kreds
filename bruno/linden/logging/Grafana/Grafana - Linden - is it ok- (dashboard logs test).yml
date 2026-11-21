@@ -1,0 +1,50 @@
+info:
+  name: Grafana - Linden - is it ok? (dashboard logs test)
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{URL_GRAFANA}}dashboards/uid/linden-logs"
+  auth:
+    type: basic
+    username: "{{grafanaUser}}"
+    password: "{{grafanaPassword}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("should return 200 OK", function () {
+          expect(res.getStatus()).to.equal(200);
+        });
+
+        test("logs dashboard is provisioned from the repo", function () {
+          const body = res.getBody();
+          expect(body.dashboard.title).to.equal("Linden – logs");
+          expect(body.meta.provisioned, "provisioned from file").to.equal(true);
+        });
+
+        test("every panel reads from loki", function () {
+          res.getBody().dashboard.panels.forEach(function (panel) {
+            expect(panel.datasource.uid, `data source of '${panel.title}'`).to.equal("loki");
+          });
+        });
+
+        test("there is a logs panel", function () {
+          const logs = res.getBody().dashboard.panels.find(panel => panel.type === "logs");
+          expect(logs, "logs panel").to.exist;
+        });
+
+        test("service and level can be chosen", function () {
+          const names = res.getBody().dashboard.templating.list.map(variable => variable.name);
+          expect(names).to.include("service");
+          expect(names).to.include("level");
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

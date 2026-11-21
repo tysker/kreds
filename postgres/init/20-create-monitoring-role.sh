@@ -10,6 +10,6 @@ SELECT format('CREATE ROLE monitoring LOGIN PASSWORD %L', :'monitoring_password'
 WHERE NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'monitoring') \gexec
 
 -- pg_monitor: read statistics and settings – no table data.
--- CONNECT to the kreds and keycloak databases stays revoked (10-create-databases.sh).
+-- CONNECT to the linden and keycloak databases stays revoked (10-create-databases.sh).
 GRANT pg_monitor TO monitoring;
 SQL

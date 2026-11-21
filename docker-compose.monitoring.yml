@@ -1,7 +1,7 @@
-# Monitoring for Kreds (ADR-0003, ADR-0004). Same project as docker-compose.yml, so it shares its network.
+# Monitoring for Linden (ADR-0003, ADR-0004). Same project as docker-compose.yml, so it shares its network.
 # Start everything:  docker compose -f docker-compose.yml -f docker-compose.monitoring.yml up -d
-# Kreds only:        docker compose up -d
-name: kreds
+# Linden only:        docker compose up -d
+name: linden
 
 # YAML anchors only work inside one file, so the log settings are repeated here.
 x-logging: &default-logging
@@ -9,14 +9,14 @@ x-logging: &default-logging
   options:
     max-size: "10m"
     max-file: "3"
-    labels: "kreds.service"
+    labels: "linden.service"
 
 services:
   prometheus:
     image: prom/prometheus:v3.13.3   # LTS line
-    container_name: kreds-prometheus
+    container_name: linden-prometheus
     labels:
-      kreds.service: prometheus
+      linden.service: prometheus
     logging: *default-logging
     command:
       - --config.file=/etc/prometheus/prometheus.yml
@@ -39,9 +39,9 @@ services:
 
   postgres-exporter:
     image: quay.io/prometheuscommunity/postgres-exporter:v0.20.0
-    container_name: kreds-postgres-exporter
+    container_name: linden-postgres-exporter
     labels:
-      kreds.service: postgres-exporter
+      linden.service: postgres-exporter
     logging: *default-logging
     environment:
       DATA_SOURCE_URI: "postgres:5432/postgres?sslmode=disable"
@@ -56,9 +56,9 @@ services:
 
   grafana:
     image: grafana/grafana:13.1.0   # OSS edition (AGPL-3.0) – never grafana-enterprise
-    container_name: kreds-grafana
+    container_name: linden-grafana
     labels:
-      kreds.service: grafana
+      linden.service: grafana
     logging: *default-logging
     environment:
       GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER}
@@ -94,9 +94,9 @@ services:
     # One-shot: new volumes belong to root, but Loki runs as the unprivileged user 10001.
     # Hands the data volume to that user, then exits. Loki itself never runs as root.
     image: busybox:1.37.0
-    container_name: kreds-loki-init
+    container_name: linden-loki-init
     labels:
-      kreds.service: loki-init
+      linden.service: loki-init
     logging: *default-logging
     command: [ "chown", "-R", "10001:10001", "/loki" ]
     volumes:
@@ -105,9 +105,9 @@ services:
 
   loki:
     image: grafana/loki:3.6.0   # newest stable 3.x.y – check before committing
-    container_name: kreds-loki
+    container_name: linden-loki
     labels:
-      kreds.service: loki
+      linden.service: loki
     logging: *default-logging
     command: [ "-config.file=/etc/loki/loki.yml" ]
     volumes:
@@ -121,14 +121,14 @@ services:
 
   fluent-bit:
     image: fluent/fluent-bit:5.2.0
-    container_name: kreds-fluent-bit
-    logging: *default-logging        # no kreds.service label → its own logs are never shipped (no loop)
+    container_name: linden-fluent-bit
+    logging: *default-logging        # no linden.service label → its own logs are never shipped (no loop)
     # Needs root to read Docker's log files. Mitigation: read-only mount, no ports, no other host access.
     user: "0:0"
     entrypoint: [ "/fluent-bit/bin/fluent-bit" ]
     command: [ "-c", "/fluent-bit/etc/fluent-bit.yaml" ]
     environment:
-      KREDS_ENV: local               # becomes the env label; "server" later
+      LINDEN_ENV: local               # becomes the env label; "server" later
     volumes:
       - ./monitoring/fluent-bit:/fluent-bit/etc:ro
       - /var/lib/docker/containers:/var/lib/docker/containers:ro

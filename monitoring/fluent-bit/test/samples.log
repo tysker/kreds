@@ -1,4 +1,4 @@
-{"service":"keycloak","log":"2026-11-16 10:00:00,000 WARN  [org.keycloak.events] (executor-thread-1) type=\"LOGIN_ERROR\", realmName=\"kreds\", clientId=\"account-console\", userId=\"null\", ipAddress=\"172.19.0.1\", error=\"user_not_found\", code_id=\"AbCdEf123\", username=\"test.person@example.com\"\n"}
+{"service":"keycloak","log":"2026-11-16 10:00:00,000 WARN  [org.keycloak.events] (executor-thread-1) type=\"LOGIN_ERROR\", realmName=\"linden\", clientId=\"account-console\", userId=\"null\", ipAddress=\"172.19.0.1\", error=\"user_not_found\", code_id=\"AbCdEf123\", username=\"test.person@example.com\"\n"}
 {"service":"postgres","log":"2026-11-16 10:00:01.000 UTC [42] ERROR:  relation \"app_user\" does not exist at character 15\n"}
 {"service":"postgres","log":"2026-11-16 10:00:01.000 UTC [42] STATEMENT:  SELECT * FROM app_user WHERE email = 'test.person@example.com'\n"}
 {"service":"postgres","log":"2026-11-16 10:00:02.000 UTC [43] DETAIL:  Key (email)=(test.person@example.com) already exists.\n"}

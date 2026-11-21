@@ -1,0 +1,13 @@
+name: Local
+variables:
+  - name: URL
+    value: http://localhost:8080/api/v1/me
+  - name: URL_GRAFANA
+    value: http://localhost:3000/api/
+  - name: grafanaUser
+    value: linden-admin
+  - name: grafanaPassword
+    value: "{{grafanaPassword}}"
+  - secret: true
+    name: grafanaPassword
+    description: ""

@@ -1,0 +1,41 @@
+info:
+  name: Prometheus - is healthy
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:9090/api/v1/targets
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("should return 200 OK", function () {
+          expect(res.getStatus()).to.equal(200);
+        });
+
+        test("all expected targets are up", function () {
+          const targets = res.getBody().data.activeTargets;
+          const expectedJobs = ["prometheus", "keycloak", "garage", "postgres", "linden-app", "loki", "fluent-bit"];
+
+          expectedJobs.forEach(function (job) {
+            const target = targets.find(t => t.labels.job === job);
+            expect(target, `target for job '${job}'`).to.exist;
+            expect(target.health, `'${job}' at ${target.scrapeUrl}: ${target.lastError}`).to.equal("up");
+          });
+        });
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+    - expression: res.body.activeTargets[0].health
+      operator: isJson
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

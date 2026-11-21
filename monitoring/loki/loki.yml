@@ -20,7 +20,7 @@ common:
 
 schema_config:
   configs:
-    - from: 2026-11-16          # the day Kreds started storing logs; never change an existing entry
+    - from: 2026-11-16          # the day Linden started storing logs; never change an existing entry
       store: tsdb
       object_store: filesystem  # before going public: S3-compatible storage in the Nordics (ADR-0004)
       schema: v13
